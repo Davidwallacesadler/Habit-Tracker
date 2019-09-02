@@ -15,9 +15,10 @@
         <attribute name="habitName" attributeType="String" syncable="YES"/>
         <attribute name="recordedFrequency" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="recordingDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uuid" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
         <element name="Habit" positionX="-63" positionY="-18" width="128" height="178"/>
-        <element name="HabitHistory" positionX="102.5859375" positionY="-17.328125" width="128" height="88"/>
+        <element name="HabitHistory" positionX="102.5859375" positionY="-17.328125" width="128" height="103"/>
     </elements>
 </model>

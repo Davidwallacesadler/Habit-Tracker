@@ -13,10 +13,12 @@ extension HabitHistory {
     convenience init(habitName: String,
                      recordedFrequency: Int16,
                      recordingDate: Date,
+                     uuid: UUID,
                      context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)
         self.habitName = habitName
         self.recordedFrequency = recordedFrequency
         self.recordingDate = recordingDate
+        self.uuid = uuid
     }
 }

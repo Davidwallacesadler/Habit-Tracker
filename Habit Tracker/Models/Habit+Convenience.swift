@@ -17,7 +17,7 @@ extension Habit {
         return photo
     }
     convenience init(name: String,
-                     userIntention: String,
+                     userIntention: String?,
                      isNegativeHabit: Bool,
                      colorId: Int16,
                      currentTimesDone: Int16,

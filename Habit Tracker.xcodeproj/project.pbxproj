@@ -16,6 +16,8 @@
 		630E5EED231CDAD1007A56AD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E5EEC231CDAD1007A56AD /* CoreDataStack.swift */; };
 		630E5EEF231D71A5007A56AD /* Habit+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E5EEE231D71A5007A56AD /* Habit+Convenience.swift */; };
 		630E5EF1231D75BD007A56AD /* HabitHistory+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E5EF0231D75BD007A56AD /* HabitHistory+Convenience.swift */; };
+		630E5EF3231D7862007A56AD /* HabitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E5EF2231D7862007A56AD /* HabitController.swift */; };
+		630E5EF5231D896E007A56AD /* HabitHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630E5EF4231D896E007A56AD /* HabitHistoryController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		630E5EEC231CDAD1007A56AD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		630E5EEE231D71A5007A56AD /* Habit+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit+Convenience.swift"; sourceTree = "<group>"; };
 		630E5EF0231D75BD007A56AD /* HabitHistory+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitHistory+Convenience.swift"; sourceTree = "<group>"; };
+		630E5EF2231D7862007A56AD /* HabitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitController.swift; sourceTree = "<group>"; };
+		630E5EF4231D896E007A56AD /* HabitHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitHistoryController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 		630E5EE8231CD90F007A56AD /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
+				630E5EF2231D7862007A56AD /* HabitController.swift */,
+				630E5EF4231D896E007A56AD /* HabitHistoryController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -192,7 +198,9 @@
 				630E5ED5231CD7F5007A56AD /* ViewController.swift in Sources */,
 				630E5ED3231CD7F5007A56AD /* AppDelegate.swift in Sources */,
 				630E5EED231CDAD1007A56AD /* CoreDataStack.swift in Sources */,
+				630E5EF5231D896E007A56AD /* HabitHistoryController.swift in Sources */,
 				630E5EF1231D75BD007A56AD /* HabitHistory+Convenience.swift in Sources */,
+				630E5EF3231D7862007A56AD /* HabitController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
