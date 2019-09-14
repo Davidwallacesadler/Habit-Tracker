@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Habit" representedClassName="Habit" syncable="YES" codeGenerationType="class">
+        <attribute name="colorId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="currentTimesDone" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="desiredDayInterval" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="desiredFrequency" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="isNegativeHabit" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastTimeCountWasZero" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastUpdatedDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="unitOfCount" attributeType="String" syncable="YES"/>
+        <attribute name="userIntention" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="history" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="HabitHistory" inverseName="habit" inverseEntity="HabitHistory" syncable="YES"/>
+    </entity>
+    <entity name="HabitHistory" representedClassName="HabitHistory" syncable="YES" codeGenerationType="class">
+        <attribute name="recordedFrequency" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="recordingDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="habit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="history" inverseEntity="Habit" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Habit" positionX="-169.87109375" positionY="-9042.04296875" width="128" height="225"/>
+        <element name="HabitHistory" positionX="102.5859375" positionY="-17.328125" width="128" height="73"/>
+    </elements>
+</model>
