@@ -30,7 +30,7 @@ struct DateHelper {
                 }
             }
         }
-        return false
+        return true
     }
     
     func areTwoDatesOnDiffernetDays(dateOne: Date, dateTwo: Date) -> Bool {
@@ -47,6 +47,6 @@ struct DateHelper {
                 }
             }
         }
-        return false
+        return true
     }
 }

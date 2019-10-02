@@ -18,11 +18,35 @@ class HabitListTableViewController: UITableViewController {
         }
     }
     var selectedHabit: Habit?
+    var goals: [Habit] {
+        get {
+            var goals = [Habit]()
+            for habit in habitCollection {
+                if habit.isNegativeHabit == false {
+                    goals.append(habit)
+                }
+            }
+            return goals
+        }
+    }
+    var restrictions: [Habit] {
+        get {
+            var restrictions = [Habit]()
+            for habit in habitCollection {
+                if habit.isNegativeHabit {
+                    restrictions.append(habit)
+                }
+            }
+            return restrictions
+        }
+    }
+    var headerTitles = ["Goals", "Restrictions"]
     
     // MARK: - View Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+        cleanOldHabitsIfNeeded()
     }
 
     override func viewDidLoad() {
@@ -45,11 +69,15 @@ class HabitListTableViewController: UITableViewController {
     // MARK: - TableView DataSource Methods
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return headerTitles.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return habitCollection.count
+            if section == 0 {
+                return goals.count
+            } else {
+                return restrictions.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -57,8 +85,18 @@ class HabitListTableViewController: UITableViewController {
             print("Error Casting tableViewCell as HabitTableViewCell in cellForRowAt - Returning a blank UITableViewCell")
             return UITableViewCell()
         }
-        let habitForCell = habitCollection[indexPath.row]
-        setupTableViewCell(habitCell: habitCell, habit: habitForCell)
+        switch indexPath.section {
+        case 0:
+            if goals.isEmpty {
+                
+            }
+
+            let goal = goals[indexPath.row]
+            setupTableViewCell(habitCell: habitCell, habit: goal)
+        default:
+            let restriction = restrictions[indexPath.row]
+            setupTableViewCell(habitCell: habitCell, habit: restriction)
+        }
         return habitCell
     }
 
@@ -75,11 +113,36 @@ class HabitListTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        let sectionTitle = headerTitles[section]
+//        return sectionTitle
+//    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
+        let label = UILabel(frame: CGRect(x: 10,y: 6, width: tableView.frame.size.width, height: 18))
+        label.text = headerTitles[section]
+        label.textColor = .white
+        label.font = UIFont(name: "Avenir-Medium", size: 18)
+        if section == 0 {
+            view.backgroundColor = #colorLiteral(red: 0.2852365154, green: 0.9340485873, blue: 0.2821596747, alpha: 0.5109696062)
+        } else {
+            view.backgroundColor = #colorLiteral(red: 1, green: 0.4188516695, blue: 0.7263484589, alpha: 0.5105950342)
+        }
+        view.addSubview(label)
+        return view
+    }
     // MARK: - TableView Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // perform segue to counterVC
-        selectedHabit = habitCollection[indexPath.row]
+        switch indexPath.section {
+        case 0 :
+            selectedHabit = goals[indexPath.row]
+        default:
+            selectedHabit = restrictions[indexPath.row]
+        }
         performSegue(withIdentifier: "toViewHabit", sender: self)
     }
     
@@ -91,9 +154,13 @@ class HabitListTableViewController: UITableViewController {
     // MARK: - Methods
     
     func editAction(atIndexPath: IndexPath) -> UIContextualAction {
-        let habit = habitCollection[atIndexPath.row]
+        switch atIndexPath.section {
+        case 0:
+            selectedHabit = goals[atIndexPath.row]
+        default:
+            selectedHabit = restrictions[atIndexPath.row]
+        }
         let action = UIContextualAction(style: .normal, title: "Edit") { (action,view,completion) in
-            self.selectedHabit = habit
             self.performSegue(withIdentifier: "toEditHabit", sender: self)
             completion(true)
         }

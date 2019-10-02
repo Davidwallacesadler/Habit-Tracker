@@ -34,6 +34,7 @@
 		635596F32325A14C00462B02 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635596F22325A14C00462B02 /* String.swift */; };
 		635596F5232745A300462B02 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635596F4232745A300462B02 /* ViewHelper.swift */; };
 		635596F72327DE6900462B02 /* SelectableRoundedCornerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635596F62327DE6900462B02 /* SelectableRoundedCornerButton.swift */; };
+		635596F9232DA9E800462B02 /* ClearAndBoldTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635596F8232DA9E800462B02 /* ClearAndBoldTableViewHeaderFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		635596F22325A14C00462B02 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		635596F4232745A300462B02 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		635596F62327DE6900462B02 /* SelectableRoundedCornerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableRoundedCornerButton.swift; sourceTree = "<group>"; };
+		635596F8232DA9E800462B02 /* ClearAndBoldTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearAndBoldTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				630E5F432321D245007A56AD /* ImageCollectionViewCell.swift */,
 				630E5F442321D245007A56AD /* ImageCollectionViewCell.xib */,
 				635596F62327DE6900462B02 /* SelectableRoundedCornerButton.swift */,
+				635596F8232DA9E800462B02 /* ClearAndBoldTableViewHeaderFooterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				630E5EDB231CD7F5007A56AD /* HabitTracker.xcdatamodeld in Sources */,
 				635596F32325A14C00462B02 /* String.swift in Sources */,
 				630E5EEF231D71A5007A56AD /* Habit+Convenience.swift in Sources */,
+				635596F9232DA9E800462B02 /* ClearAndBoldTableViewHeaderFooterView.swift in Sources */,
 				630E5ED3231CD7F5007A56AD /* AppDelegate.swift in Sources */,
 				630E5F01231ECFB4007A56AD /* Keys.swift in Sources */,
 				630E5F03231ED0B5007A56AD /* Color.swift in Sources */,

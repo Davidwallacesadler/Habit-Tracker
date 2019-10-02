@@ -13,7 +13,11 @@ class HistoryTableViewController: UITableViewController {
     var habit: Habit?
     var habitHistory: [HabitHistory] {
         get {
-            guard let history = habit?.history?.array as? [HabitHistory] else { return [] }
+            guard var history = habit?.history?.array as? [HabitHistory] else { return [] }
+            history.sort {one,two in {
+                one.recordingDate! > two.recordingDate!
+                }()
+            }
             return history
         }
     }
@@ -46,9 +50,17 @@ class HistoryTableViewController: UITableViewController {
         let historyPoint = habitHistory[indexPath.row]
         guard let recordingDate = historyPoint.recordingDate, let selectedHabit = habit else { return UITableViewCell() }
         let recordingDateText = recordingDate.stringValueWithoutTime()
-        cell.textLabel?.text = "\(recordingDateText) : \(historyPoint.recordedFrequency) out of \( selectedHabit.desiredFrequency)"
+        cell.textLabel?.text = "\(recordingDateText) : \(historyPoint.recordedFrequency) out of \( selectedHabit.desiredFrequency) \(selectedHabit.unitOfCount!.pluralize())"
         cell.textLabel?.textColor = .white
         return cell
+    }
+    
+    private func getHeaderTitles() {
+        var weekTitles: [String] = []
+        let todaysWeekMonthAndYear = Date().weekMonthYear()
+        for habitHistoryPoint in habitHistory {
+            
+        }
     }
 
     /*
