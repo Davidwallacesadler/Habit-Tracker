@@ -18,3 +18,8 @@ extension HabitHistory {
         self.recordingDate = recordingDate
     }
 }
+extension HabitHistory : Dated {
+    var date: Date {
+        return recordingDate!
+    }
+}

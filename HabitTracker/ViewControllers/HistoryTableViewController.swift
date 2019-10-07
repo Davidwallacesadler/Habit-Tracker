@@ -10,7 +10,13 @@ import UIKit
 
 class HistoryTableViewController: UITableViewController {
     
+    // MARK: - Internal Properties
+    
+    let formatter = DateFormatter()
     var habit: Habit?
+    
+    // MARK: - Computed Properties
+    
     var habitHistory: [HabitHistory] {
         get {
             guard var history = habit?.history?.array as? [HabitHistory] else { return [] }
@@ -21,7 +27,23 @@ class HistoryTableViewController: UITableViewController {
             return history
         }
     }
-
+    var historyGroupedByMonth: [Date: [HabitHistory]] {
+        get {
+            return createHistoryGroupings()
+        }
+    }
+    var groupingKeys: [Date] {
+        get {
+            var grouping = [Date]()
+            for key in historyGroupedByMonth.keys {
+                grouping.append(key)
+            }
+            return grouping.sorted(by: >)
+        }
+    }
+    
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -33,79 +55,53 @@ class HistoryTableViewController: UITableViewController {
         tableView.backgroundView = imageView
     }
 
-    // MARK: - Table view data source
+    // MARK: - TableView Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return groupingKeys.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let firstOfTheMonth = groupingKeys[section]
+        let monthAndYear = firstOfTheMonth.monthAndYear()
+        return monthAndYear
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return habitHistory.count
+        let weekKey = groupingKeys[section]
+        guard let historyGroupingCount = historyGroupedByMonth[weekKey]?.count else { return 1 }
+        return historyGroupingCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "historyTableViewCell", for: indexPath)
-        let historyPoint = habitHistory[indexPath.row]
-        guard let recordingDate = historyPoint.recordingDate, let selectedHabit = habit else { return UITableViewCell() }
-        let recordingDateText = recordingDate.stringValueWithoutTime()
-        cell.textLabel?.text = "\(recordingDateText) : \(historyPoint.recordedFrequency) out of \( selectedHabit.desiredFrequency) \(selectedHabit.unitOfCount!.pluralize())"
-        cell.textLabel?.textColor = .white
+        let weekKey = groupingKeys[indexPath.section]
+        if let habitHistoryGrouping = historyGroupedByMonth[weekKey] {
+            let historyPoint = habitHistoryGrouping[indexPath.row]
+            if let recordingDate = historyPoint.recordingDate, let selectedHabit = habit {
+                let recordingDateWeekday = recordingDate.weekDay()
+                formatter.dateStyle = .short
+                let recordingDate = formatter.string(from: recordingDate)
+                cell.textLabel?.text = "\(recordingDateWeekday), \(recordingDate) : \(historyPoint.recordedFrequency) out of \(selectedHabit.desiredFrequency) \(selectedHabit.unitOfCount!.pluralize())"
+                cell.textLabel?.textColor = .white
+            }
+        }
         return cell
     }
     
-    private func getHeaderTitles() {
-        var weekTitles: [String] = []
-        let todaysWeekMonthAndYear = Date().weekMonthYear()
-        for habitHistoryPoint in habitHistory {
-            
-        }
+    private func createHistoryGroupings() -> [Date: [HabitHistory]] {
+        let grouping = habitHistory.groupedBy(dateComponents: [.year,.month])
+        return grouping
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toShowCharts" {
+            guard let destinationVC = segue.destination as? HistoryChartViewController else { return }
+            destinationVC.habitHistory = habitHistory
+            destinationVC.unit = (habit?.unitOfCount?.pluralize())!
+            destinationVC.habitName = (habit?.name)!
+        }
     }
-    */
-
 }

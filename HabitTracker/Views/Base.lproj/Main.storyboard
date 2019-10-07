@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wzu-Ka-Lek">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wzu-Ka-Lek">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -221,7 +219,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ocr-0q-Np7" id="gZj-J7-ha2">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="74.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -233,11 +231,50 @@
                             <outlet property="delegate" destination="Xw5-yk-aha" id="qGN-sO-6cs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Habit History" id="rS4-GM-crt"/>
+                    <navigationItem key="navigationItem" title="Habit History" id="rS4-GM-crt">
+                        <barButtonItem key="rightBarButtonItem" title="Charts" id="eyN-76-rtX">
+                            <connections>
+                                <segue destination="tcJ-w6-T32" kind="show" identifier="toShowCharts" id="JLC-SW-L93"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cn7-vl-b9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1252" y="388"/>
+        </scene>
+        <!--History Chart View Controller-->
+        <scene sceneID="Ifq-5f-zbT">
+            <objects>
+                <viewController id="tcJ-w6-T32" customClass="HistoryChartViewController" customModule="HabitTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WSE-du-dli">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dTt-Av-h2z" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="363"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="363" id="jzp-xK-BUz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dTt-Av-h2z" firstAttribute="top" secondItem="kAo-zM-eau" secondAttribute="top" id="J0r-H9-MF2"/>
+                            <constraint firstItem="dTt-Av-h2z" firstAttribute="trailing" secondItem="kAo-zM-eau" secondAttribute="trailing" id="SX5-0P-iEy"/>
+                            <constraint firstItem="dTt-Av-h2z" firstAttribute="leading" secondItem="kAo-zM-eau" secondAttribute="leading" id="oZs-y7-WW4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kAo-zM-eau"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KZY-eu-1Ii"/>
+                    <connections>
+                        <outlet property="chartsView" destination="dTt-Av-h2z" id="H63-yL-M5q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dq4-P4-U2M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2295.6521739130435" y="387.72321428571428"/>
         </scene>
         <!--Habits-->
         <scene sceneID="KMD-yD-abG">
@@ -278,11 +315,11 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bgb-m1-Jf4" id="JTs-tv-GAS">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give your habit a name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kfB-dI-z5P">
-                                                    <rect key="frame" x="16" y="8" width="382" height="27.5"/>
+                                                    <rect key="frame" x="16" y="8" width="382" height="28"/>
                                                     <color key="backgroundColor" red="0.22702714179069375" green="0.30208940390284894" blue="0.74486301369863017" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="textColor" red="0.79229158160000002" green="0.81385850910000002" blue="0.9406071305" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -303,14 +340,14 @@
                             <tableViewSection headerTitle="Positive or Negative" id="xBO-L8-U2h">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GWv-vl-Ud2">
-                                        <rect key="frame" x="0.0" y="100" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="128" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GWv-vl-Ud2" id="N4o-0y-nwA">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NPM-24-xcQ">
-                                                    <rect key="frame" x="16" y="8" width="382" height="28.5"/>
+                                                    <rect key="frame" x="16" y="8" width="382" height="29"/>
                                                     <segments>
                                                         <segment title="Restriction"/>
                                                         <segment title="Goal"/>
@@ -335,27 +372,27 @@
                             <tableViewSection headerTitle="Desired Daily Frequency" id="QhU-3Z-9qp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="101" id="93i-2m-QQq">
-                                        <rect key="frame" x="0.0" y="172" width="414" height="101"/>
+                                        <rect key="frame" x="0.0" y="228" width="414" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="93i-2m-QQq" id="vfL-bN-Ae3">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="101"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5eh-4y-DHA">
-                                                    <rect key="frame" x="16" y="8" width="382" height="84.5"/>
+                                                    <rect key="frame" x="16" y="8" width="382" height="85"/>
                                                     <subviews>
                                                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1no-Z4-oX5">
-                                                            <rect key="frame" x="0.0" y="0.0" width="122" height="84.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="122" height="85"/>
                                                         </pickerView>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Times" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8kX-sF-JZe">
-                                                            <rect key="frame" x="130" y="27.5" width="122" height="30"/>
+                                                            <rect key="frame" x="130" y="25.5" width="122" height="34"/>
                                                             <color key="backgroundColor" red="0.2270271418" green="0.3020894039" blue="0.74486301369999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <color key="textColor" red="0.79229158160000002" green="0.81385850910000002" blue="0.9406071305" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NmP-hH-qAi">
-                                                            <rect key="frame" x="260" y="32" width="122" height="20.5"/>
+                                                            <rect key="frame" x="260" y="32.5" width="122" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.79229158160000002" green="0.81385850910000002" blue="0.9406071305" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -378,14 +415,14 @@
                             <tableViewSection headerTitle="Habit Intention" id="jWj-p2-CPs">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="94" id="HSd-B5-xA4">
-                                        <rect key="frame" x="0.0" y="301" width="414" height="94"/>
+                                        <rect key="frame" x="0.0" y="385" width="414" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HSd-B5-xA4" id="x5P-Uh-isp">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="93.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What is your goal for setting this habit? What do you hope to get out of tracking it?" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LOi-p4-8eg">
-                                                    <rect key="frame" x="16" y="8" width="382" height="77.5"/>
+                                                    <rect key="frame" x="16" y="8" width="382" height="78"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" red="0.90714704140000002" green="0.92064901769999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
@@ -407,10 +444,10 @@
                             <tableViewSection headerTitle="Icon or Photo" id="GgQ-cO-U0E">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="227" id="byB-Bm-92D">
-                                        <rect key="frame" x="0.0" y="423" width="414" height="227"/>
+                                        <rect key="frame" x="0.0" y="535" width="414" height="227"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="byB-Bm-92D" id="hdm-hf-4BV">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="226.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="227"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r1Q-jb-VFy">
@@ -434,7 +471,7 @@
                                                     </connections>
                                                 </button>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZpS-1q-24Z">
-                                                    <rect key="frame" x="16" y="147" width="382" height="71.5"/>
+                                                    <rect key="frame" x="16" y="147" width="382" height="72"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="x6n-55-aRl">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -483,55 +520,55 @@
                             <tableViewSection headerTitle="Color" id="cmJ-az-qe7">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="227" id="Q03-gR-eQr">
-                                        <rect key="frame" x="0.0" y="678" width="414" height="227"/>
+                                        <rect key="frame" x="0.0" y="818" width="414" height="227"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q03-gR-eQr" id="xF1-dA-WqN">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="226.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="227"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Icz-ZE-E48">
-                                                    <rect key="frame" x="36" y="19" width="342" height="189"/>
+                                                    <rect key="frame" x="24" y="19" width="366" height="189"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Hgs-7u-f4v">
-                                                            <rect key="frame" x="0.0" y="0.0" width="342" height="93.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="366" height="93.5"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0R-EX-U5e" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="55.5" height="93.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="59.5" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.92156862745098034" green="0.098039215686274508" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="redButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="Ilg-67-3hk"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L5J-WH-bAY" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="57.5" y="0.0" width="55" height="93.5"/>
+                                                                    <rect key="frame" x="61.5" y="0.0" width="59" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.89803921568627454" green="0.34901960784313724" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="redOrangeButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="76L-WS-ECq"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0P-YZ-Yyx" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="114.5" y="0.0" width="55.5" height="93.5"/>
+                                                                    <rect key="frame" x="122.5" y="0.0" width="59.5" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.89803921568627454" green="0.56862745098039214" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="orangeButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="jRc-Ei-EoS"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpe-SV-txD" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="172" y="0.0" width="55.5" height="93.5"/>
+                                                                    <rect key="frame" x="184" y="0.0" width="59.5" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.89803921568627454" green="0.75686274509803919" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="yellowButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="pck-Ib-Mrq"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUZ-2X-uPz" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="229.5" y="0.0" width="55" height="93.5"/>
+                                                                    <rect key="frame" x="245.5" y="0.0" width="59" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.70980392156862748" green="0.89803921568627454" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="yellowGreenButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="LBz-sw-S4m"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46I-Au-IwM" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="286.5" y="0.0" width="55.5" height="93.5"/>
+                                                                    <rect key="frame" x="306.5" y="0.0" width="59.5" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.39215686274509803" green="0.89803921568627454" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="greenButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="dLh-iT-fbR"/>
@@ -541,45 +578,45 @@
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ug1-p9-9iK">
-                                                            <rect key="frame" x="0.0" y="95.5" width="342" height="93.5"/>
+                                                            <rect key="frame" x="0.0" y="95.5" width="366" height="93.5"/>
                                                             <subviews>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0tK-Vl-WVN" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="55.5" height="93.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="59.5" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.0039215686274509803" green="0.89803921568627454" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="tealButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="3vC-ig-OA6"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH0-Uj-bTI" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="57.5" y="0.0" width="55" height="93.5"/>
+                                                                    <rect key="frame" x="61.5" y="0.0" width="59" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.62745098039215685" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="lightBlueButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="Sup-3o-HfP"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btt-vv-u0H" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="114.5" y="0.0" width="55.5" height="93.5"/>
+                                                                    <rect key="frame" x="122.5" y="0.0" width="59.5" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.0" green="0.27058823529411763" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="darkBlueButonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="0K9-wO-fAK"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kC0-oO-ttw" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="172" y="0.0" width="55.5" height="93.5"/>
+                                                                    <rect key="frame" x="184" y="0.0" width="59.5" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.39346104452054792" green="0.0" blue="0.78737692636986301" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="blueVioletButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="0xc-2f-KR6"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5h-9S-XBw" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="229.5" y="0.0" width="55" height="93.5"/>
+                                                                    <rect key="frame" x="245.5" y="0.0" width="59" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.28804580479452052" green="0.0" blue="0.2890357448630137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="redVioletButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="xhT-PE-EiB"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EJ-dA-MoD" customClass="SelectableRoundedCornerButton" customModule="HabitTracker" customModuleProvider="target">
-                                                                    <rect key="frame" x="286.5" y="0.0" width="55.5" height="93.5"/>
+                                                                    <rect key="frame" x="306.5" y="0.0" width="59.5" height="93.5"/>
                                                                     <color key="backgroundColor" red="0.89803921568627454" green="0.035294117647058823" blue="0.74901960784313726" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <connections>
                                                                         <action selector="pinkButtonPressed:" destination="gSC-TD-vm5" eventType="touchUpInside" id="QlH-C5-VK0"/>

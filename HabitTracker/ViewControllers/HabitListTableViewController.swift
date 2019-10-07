@@ -107,17 +107,11 @@ class HabitListTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
             let selectedHabit = habitCollection[indexPath.row]
             HabitController.shared.deleteHabit(habit: selectedHabit)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let sectionTitle = headerTitles[section]
-//        return sectionTitle
-//    }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
